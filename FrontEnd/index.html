@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>MyToDoList - Página Inicial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1>Minhas Tarefas</h1>
+
+        <form id="loginForm" class="login-form">
+            <input type="email" id="email" placeholder="E-mail" required />
+            <input type="password" id="password" placeholder="Senha" required />
+            <button type="submit">Entrar</button>
+            <div id="loginMessage"></div>
+        </form>
+
+        <form id="taskForm" style="display: none;">
+            <input type="text" id="newTask" placeholder="Digite uma nova tarefa" required />
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <ul class="task-list" id="taskList">
+            <!-- Tarefas serão inseridas aqui dinamicamente -->
+        </ul>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginMessage = document.getElementById('loginMessage');
+
+        const taskForm = document.getElementById('taskForm');
+        const taskList = document.getElementById('taskList');
+        const newTaskInput = document.getElementById('newTask');
+
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+
+            if (!emailRegex.test(email)) {
+                loginMessage.textContent = "E-mail inválido.";
+                loginMessage.style.color = "red";
+                return;
+            }
+
+            if (!passwordRegex.test(password)) {
+                loginMessage.textContent = "A senha deve ter no mínimo 8 caracteres, incluindo maiúscula, minúscula e caractere especial.";
+                loginMessage.style.color = "red";
+                return;
+            }
+
+            loginMessage.textContent = "Login bem-sucedido!";
+            loginMessage.style.color = "#00ff88";
+            loginForm.style.display = 'none';
+            taskForm.style.display = 'flex';
+        });
+
+        taskForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const taskText = newTaskInput.value.trim();
+
+            if (taskText !== '') {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                        ${taskText}
+                        <button onclick="this.parentElement.remove()">Remover</button>
+                    `;
+                taskList.appendChild(li);
+                newTaskInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

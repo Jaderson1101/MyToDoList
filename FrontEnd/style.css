@@ -15,6 +15,7 @@ body {
     height: 100vh;
 }
 
+/* Estilo container da tela de login */
 .login-container {
     background-color: #333;
     padding: 2rem;
@@ -75,4 +76,61 @@ button {
 #message {
     margin-top: 1rem;
     font-size: 0.95rem;
+}
+
+/* Estilo da página principal (index.html) */
+.main-container {
+    background-color: #333;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 800px;
+}
+
+    .main-container h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #00ff88;
+    }
+
+.task-list {
+    margin-top: 1rem;
+    list-style: none;
+}
+
+    .task-list li {
+        padding: 0.5rem 1rem;
+        background-color: #222;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+    }
+
+        .task-list li button {
+            background-color: #ff4d4d;
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+        }
+
+            .task-list li button:hover {
+                background-color: #e60000;
+            }
+
+/* Formulário de login embutido na tela principal */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+#loginMessage {
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
 }
